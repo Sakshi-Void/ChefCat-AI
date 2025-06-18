@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environments
+venv/
+.env
+!.env.example
+backend/.env
+!backend/.env.example
+frontend/.env
+!frontend/.env.example
+
+# DB
+chat.db
+
+# Node (React)
+node_modules/
+dist/
+build/
+
+# System / OS
+.DS_Store
+Thumbs.db
+*.log
