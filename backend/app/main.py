@@ -45,33 +45,70 @@
 # # Vercel serverless handler
 # handler = Mangum(app)
 
+# from fastapi import FastAPI
+# from fastapi.middleware.cors import CORSMiddleware
+# from mangum import Mangum
+
+# # Import your routes and database
+# from app.db.db_base import Base, engine
+# from app.api import chat, history
+# from app.routes import documents
+
+# Base.metadata.create_all(bind=engine)
+
+# app = FastAPI(title="ChefCat.AI Backend")
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],  # or specific frontend URL
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+# app.include_router(chat.router, prefix="/api/chat")
+# app.include_router(documents.router, prefix="/api/documents")
+# app.include_router(history.router, prefix="/api/history")
+
+# @app.get("/")
+# def root():
+#     return {"message": "ChefCat.AI backend running"}
+
+# handler = Mangum(app)  # Required for serverless
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 
-# Import your routes and database
+# Import your routes
 from app.db.db_base import Base, engine
 from app.api import chat, history
 from app.routes import documents
 
+# Database tables
 Base.metadata.create_all(bind=engine)
 
+# FastAPI app
 app = FastAPI(title="ChefCat.AI Backend")
 
+# CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or specific frontend URL
+    allow_origins=["*"],  # Or your frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Include routes
 app.include_router(chat.router, prefix="/api/chat")
 app.include_router(documents.router, prefix="/api/documents")
 app.include_router(history.router, prefix="/api/history")
 
+# Root endpoint
 @app.get("/")
 def root():
     return {"message": "ChefCat.AI backend running"}
 
-handler = Mangum(app)  # Required for serverless
+# Mangum handler for Vercel serverless
+handler = Mangum(app)
