@@ -54,4 +54,4 @@ def answer_question_from_pdf(query: str) -> str:
         return " Failed to get an answer from the AI."
     except Exception as e:
         print("Unexpected error:", e)
-        return " Internal error while answering your question."
+        return " Internal server error whilw solving your question."

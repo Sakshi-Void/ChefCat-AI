@@ -1,10 +1,23 @@
-fastapi
-uvicorn
-sqlalchemy
-pydantic
-python-jose
-passlib
-sentence-transformers
-faiss-cpu
-PyPDF2
-httpx
+fastapi>=0.115
+uvicorn>=0.30
+sqlalchemy>=2.0
+pydantic>=2.5
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# RAG / vectors (Qdrant Cloud)
+qdrant-client>=1.9
+
+# HTTP client(s)
+httpx>=0.27
+requests>=2.32
+
+# PDF utils
+PyPDF2>=3.0.1
+
+# Optional: env loader
+python-dotenv>=1.0
+
+# Optional (only if you still want AWS Lambda compat;
+# Vercel ko zarurat nahi, but keeping it is harmless)
+mangum>=0.17
